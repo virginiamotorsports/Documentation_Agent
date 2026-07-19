@@ -59,15 +59,15 @@ class BoxClient:
 
         return response.json()
 
-    def get_extracted_text_representation_metadata(
-        self, file_id: str
-    ) -> dict:
+    def get_extracted_text_representation_metadata(self, file_id: str) -> dict:
         api_endpoint = f"files/{file_id}"
-        
+
         params = {"fields": "representations"}
         header = {**self.headers, "x-rep-hints": "[extracted_text]"}
 
-        response = self._make_request("GET", api_endpoint, headers=header, params=params)
+        response = self._make_request(
+            "GET", api_endpoint, headers=header, params=params
+        )
         return response.json()
 
     def download_extracted_text_representation(self, url_template: str):
